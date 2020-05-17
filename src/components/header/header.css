@@ -1,0 +1,10 @@
+#header {
+    align-self: center;
+    padding: 2rem;
+}
+
+#header p {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}

@@ -1,0 +1,11 @@
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+   
+    width: 75vw;
+    height: 100vh;
+
+    background-color: whitesmoke;
+}

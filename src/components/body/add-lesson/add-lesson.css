@@ -1,0 +1,13 @@
+.add-lesson-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 8rem;
+    width: 75%;
+
+    border-radius: 0.25rem;
+
+    background-color: thistle;
+}
