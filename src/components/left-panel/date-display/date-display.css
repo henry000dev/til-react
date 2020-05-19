@@ -1,0 +1,30 @@
+.date-display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 20rem;
+    width: 75%;
+
+    border-radius: 0.25rem;
+    padding: 1rem;
+
+    /* color: var(--text-colour-light); */
+
+    background-color: var(--colour-primary);
+    color: var(--text-colour-dark);
+}
+
+#date-display-date {
+    font-size: 10rem;
+}
+
+#date-display-month {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+#date-display-year {
+    font-size: 1rem;
+}

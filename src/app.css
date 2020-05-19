@@ -1,11 +1,11 @@
 #app {
+    /* Defines how children elements are laid out. */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-   
-    width: 75vw;
-    height: 100vh;
 
-    background-color: whitesmoke;
+    /* The panels must be at least as height as the browser view-port. */
+    width: 100vw;
+    min-height: 100vh;
 }

@@ -1,20 +1,15 @@
 import React from 'react';
+import MiddlePanel from './components/middle-panel/middle-panel';
+import LeftPanel from './components/left-panel/left-panel';
+import RightPanel from './components/right-panel/right-panel';
 import './app.css';
-import Header from './components/header/header';
-import Body from './components/body/body';
-import Footer from './components/footer/footer';
-
-const person = {
-  name: "Henry",
-  age: 22
-};
 
 function App() {
   return (
     <div id='app'>
-      <Header/>
-      <Body/>
-      <Footer/>
+      <LeftPanel />
+      <MiddlePanel />
+      <RightPanel />
     </div>
   );
 }
