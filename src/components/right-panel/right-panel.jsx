@@ -6,8 +6,8 @@ import './right-panel.css';
 function RightPanel() {
     return (
         <div className="right-panel">
-            <Footer />
             <Summary />
+            <Footer />
         </div>
     );
 }

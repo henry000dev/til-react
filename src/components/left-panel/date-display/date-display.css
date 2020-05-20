@@ -9,11 +9,10 @@
 
     border-radius: 0.25rem;
     padding: 1rem;
-
-    /* color: var(--text-colour-light); */
+    margin-bottom:10rem;
 
     background-color: var(--colour-primary);
-    color: var(--text-colour-dark);
+    color: var(--text-colour-light);
 }
 
 #date-display-date {

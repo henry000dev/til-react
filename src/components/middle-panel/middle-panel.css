@@ -1,5 +1,7 @@
 .middle-panel {
-    width: 60vw;
+    /* width: 60vw; */
+    flex: 1;
+    
     background-color: var(--background-colour-secondary);
 
     display: flex;

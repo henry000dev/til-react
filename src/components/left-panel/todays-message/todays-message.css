@@ -1,0 +1,19 @@
+.todays-message-container {
+    padding: 1rem;
+}
+
+.todays-message {
+    color: var(--text-colour-light);
+}
+
+.add-lesson-button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+
+    text-align: center;
+    color: var(--text-colour-dark);
+    background-color: var(--colour-secondary);
+    border-radius: 0.25rem;
+    
+    cursor: pointer;
+}

@@ -4,8 +4,10 @@ import './footer.css';
 function Footer() {
     return (
         <div id="footer">
-            <a href="https://hkplay.space">&copy; hkplace.space</a>
-            <p>May 2020</p>
+            <div>
+                <a href="https://hkplay.space">&copy; hkplace.space</a>
+            </div>
+            <div>May 2020</div>
         </div>
     );
 }

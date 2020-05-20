@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './header/header';
-import Body from './body/body';
+import LessonsList from './lessons/lessons-list';
 import './middle-panel.css';
 
 function MiddlePanel() {
     return (
         <div className="middle-panel">
             <Header />
-            <Body />
+            <LessonsList />
         </div>
     );
 }
