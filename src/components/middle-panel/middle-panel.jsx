@@ -8,8 +8,8 @@ function MiddlePanel() {
     return (
         <div className="middle-panel">
             <Header />
-            {/* <LessonsList /> */}
-            <LessonInputDialog />
+            <LessonsList />
+            {/* <LessonInputDialog /> */}
         </div>
     );
 }

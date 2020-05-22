@@ -11,7 +11,10 @@ function Summary() {
                 Total Days: 10
             </div>
             <div className="summary-block">
-                Days with Lessons: 9
+                Days with Lessons: 8
+            </div>
+            <div className="summary-block">
+                Days missed: 2
             </div>
         </div>
     );

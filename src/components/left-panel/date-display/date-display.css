@@ -15,8 +15,8 @@
     color: var(--text-colour-light);
 }
 
-#date-display-date {
-    font-size: 10rem;
+#date-display-day {
+    font-size: 8rem;
 }
 
 #date-display-month {
