@@ -4,11 +4,11 @@ import LessonsList from './lessons/lessons-list';
 import LessonInputDialog from './lesson-input-dialog/lesson-input-dialog';
 import './middle-panel.css';
 
-function MiddlePanel() {
+function MiddlePanel({lessons}) {
     return (
         <div className="middle-panel">
             <Header />
-            <LessonsList />
+            <LessonsList className="lessons-list-container" lessons={lessons} />
             {/* <LessonInputDialog /> */}
         </div>
     );

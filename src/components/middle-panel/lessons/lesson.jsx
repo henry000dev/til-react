@@ -1,14 +1,14 @@
 import React from 'react';
 import './lesson.css';
 
-function Lesson() {
+function Lesson({lesson}) {
     return (
         <div className="lesson-container">
             <div className="lesson-date">
-                19 May
+                {lesson.date}
             </div>
             <div className="lesson-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum animi officia magnam provident inventore. Porro quas quae incidunt doloremque at optio accusamus, numquam ipsum. Vel est fugit optio? Iure, ipsum?
+                {lesson.text}
             </div>
         </div>
     );
