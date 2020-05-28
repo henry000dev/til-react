@@ -5,7 +5,7 @@ function TodaysMessage({onAddLessonClicked}) {
     return (
         <div className="todays-message-container">
             <div className="todays-message">
-                There is no lesson today yet.
+                N lesson for today yet...
             </div>
             <div className="add-lesson-button" onClick={onAddLessonClicked}>
                 Add Today's Lesson

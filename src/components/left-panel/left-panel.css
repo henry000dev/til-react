@@ -1,10 +1,16 @@
 .left-panel {
+    position: fixed;
+
+    /* The width should match with the left value of middle panel. */
     width: 20vw;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
 
     padding: 2rem 1rem;
+
+    background-color: black;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import './lesson-input-dialog.css';
+import {getDateString} from './../../../utils/utils';
 
-function LessonInputDialog({onAddLessonDone, onAddLessonCancelled}) {
+function LessonInputDialog({todaysDate, onAddLessonDone, onAddLessonCancelled}) {
     return (
         <div>
             <div id="lessonInput" className="lesson-input-dialog">
@@ -11,7 +12,7 @@ function LessonInputDialog({onAddLessonDone, onAddLessonCancelled}) {
                         <div className="close-button" onClick={onAddLessonCancelled}>&times;</div>
                     </div>
                     <div className="content-body">
-                        <div className="content-date">19 May 2020</div>
+                        <div className="content-date">{getDateString(todaysDate)}</div>
                         <div className="content-text-area">
                             <form action="/">
                                 <div>

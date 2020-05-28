@@ -1,7 +1,11 @@
 .middle-panel {
-    /* width: 60vw; */
-    flex: 1;
-    
+    position: absolute;
+
+    /* The left value should match with the width of left panel. */
+    left: 20vw;
+
+    min-height: 100vh;
+
     background-color: var(--background-colour-secondary);
 
     display: flex;
