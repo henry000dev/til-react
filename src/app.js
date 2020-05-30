@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import MiddlePanel from './components/middle-panel/middle-panel';
 import LeftPanel from './components/left-panel/left-panel';
 import LessonInputDialog from './components/modal-dialog/lesson-input-dialog/lesson-input-dialog';
+import MessageDialog from './components/modal-dialog/message-dialog/message-dialog';
 import {getDateString} from './utils/utils';
 import './app.css';
 
@@ -11,6 +12,11 @@ function App() {
   const todaysDate = new Date();
   const [lessons, setLessons] = useState([]);
   const [addingLesson, setAddingLesson] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState({
+    isShowing: false,
+    title: "Title",
+    message: "Message"
+  });
 
   useEffect(() => {
     const storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
@@ -46,13 +52,31 @@ function App() {
   }
 
   function handleAddLessonClicked(evt) {
+    if (lessons.length >= 10) {
+      setDialogMessage({
+        isShowing: true,
+        title: "Add Lesson",
+        message: "Sorry, cannot add more than 10 lessons...\n\nIt's just a demo app after all 😀"
+      });
+      return;
+    }
+
     setAddingLesson(true);
+  }
+
+  function showMessageDismissed(evt) {
+    setDialogMessage({
+      isShowing: false,
+      title: "",
+      message: ""
+    });
   }
 
   return (
     <div id='app'>
       <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
       {addingLesson && <LessonInputDialog todaysDate={todaysDate} onAddLessonDone={handleAddLessonDone} onAddLessonCancelled={handleAddLessonCancelled} />}
+      {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
       <MiddlePanel lessons={lessons}/>
     </div>
   );
