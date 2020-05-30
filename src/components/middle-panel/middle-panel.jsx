@@ -4,7 +4,7 @@ import NoLessons from './no-lessons';
 import LessonsList from './lessons/lessons-list';
 import './middle-panel.css';
 
-function MiddlePanel({lessons}) {
+function MiddlePanel({lessons, onEditLessonClicked}) {
     function showNoLessonsMessage() {
         return <NoLessons />;
     }
@@ -12,7 +12,7 @@ function MiddlePanel({lessons}) {
     function showLessonsList() {
         return (
             <div className="lessons-container">
-                <LessonsList lessons={lessons} />
+                <LessonsList lessons={lessons} onEditLessonClicked={onEditLessonClicked} />
             </div>
         );
     }

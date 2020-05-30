@@ -1,9 +1,9 @@
 import React from 'react';
 import './lesson.css';
 
-function Lesson({lesson}) {
+function Lesson({lesson, onEditLessonClicked}) {
     function onLessonClicked(evt) {
-        console.log(lesson.text);
+        onEditLessonClicked(evt, lesson);
     }
 
     return (

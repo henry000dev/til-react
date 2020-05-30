@@ -10,4 +10,11 @@ function getDateString(aDate) {
   return aDate.toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-export {getDateParts, getDateString};
+function createLesson(lessonDate, lessonText) {
+  return {
+    date: lessonDate,
+    text: lessonText
+  };
+}
+
+export {getDateParts, getDateString, createLesson};

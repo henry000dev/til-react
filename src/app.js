@@ -10,8 +10,10 @@ const LESSONS_STORAGE_KEY = "til-react.lessons";
 
 function App() {
   const todaysDate = new Date();
+
   const [lessons, setLessons] = useState([]);
   const [addingLesson, setAddingLesson] = useState(false);
+  const [updatingLesson, setUpdatingLesson] = useState(null);
   const [dialogMessage, setDialogMessage] = useState({
     isShowing: false,
     title: "Title",
@@ -22,7 +24,7 @@ function App() {
     const storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
 
     setLessons(storedLessons);
-  } ,[]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(LESSONS_STORAGE_KEY, JSON.stringify(lessons))
@@ -34,17 +36,14 @@ function App() {
     return aDate !== undefined;
   }
 
-  function handleAddLessonCancelled(evt) {
+  function handleAddingLessonCancelled(evt) {
     setAddingLesson(false);
   }
 
-  function handleAddLessonDone(evt, lessonText) {
+  function handleAddingLessonDone(evt, lesson) {
     const newLessons = [...lessons];
 
-    newLessons.unshift({
-      date: getDateString(todaysDate),
-      text: lessonText
-    });
+    newLessons.unshift(lesson);
    
     setLessons(newLessons);
 
@@ -64,6 +63,25 @@ function App() {
     setAddingLesson(true);
   }
 
+  function handleUpdatingLessonCancelled(evt, lesson) {
+    setUpdatingLesson(null);
+  }
+
+  function handleUpdatingLessonDone(evt, updatedLesson) {
+    const lessonIndex = lessons.findIndex((lesson) => lesson.date === updatedLesson.date);
+    
+    const newLessons = [...lessons];
+    newLessons[lessonIndex] = updatedLesson;
+
+    setLessons(newLessons);
+
+    setUpdatingLesson(null);
+  }
+
+  function handleUpdatingLessonClicked(evt, lesson) {
+    setUpdatingLesson(lesson);
+  }
+
   function showMessageDismissed(evt) {
     setDialogMessage({
       isShowing: false,
@@ -75,9 +93,10 @@ function App() {
   return (
     <div id='app'>
       <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
-      {addingLesson && <LessonInputDialog todaysDate={todaysDate} onAddLessonDone={handleAddLessonDone} onAddLessonCancelled={handleAddLessonCancelled} />}
+      {updatingLesson != null && <LessonInputDialog isAddingLesson={false} lessonDate={updatingLesson.date} lessonText={updatingLesson.text} onEditingLessonDone={handleUpdatingLessonDone} onEditingLessonCancelled={handleUpdatingLessonCancelled} />}
+      {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={todaysDate} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
       {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
-      <MiddlePanel lessons={lessons}/>
+      <MiddlePanel lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
     </div>
   );
 }

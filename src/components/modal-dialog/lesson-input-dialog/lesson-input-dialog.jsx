@@ -1,17 +1,34 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import './lesson-input-dialog.css';
-import {getDateString} from './../../../utils/utils';
+import {getDateString, createLesson} from './../../../utils/utils';
 
-function LessonInputDialog({todaysDate, onAddLessonDone, onAddLessonCancelled}) {
+function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLessonDone, onEditingLessonCancelled}) {
     const textAreaRef = useRef();
+
+    // Sets the initial text area value. For some reason using value={lessonText} in the HTML makes it not editable.
+    useEffect(() => {
+        if (isAddingLesson) {
+            textAreaRef.current.value = null;
+        } else {
+            textAreaRef.current.value = lessonText;
+        }
+      });
 
     function onLessonTextChanged(evt) {
         console.log(evt.currentTarget.value);
     }
 
-    function onAddLessonClicked(evt) {
-        const lessonText = textAreaRef.current.value;
-        onAddLessonDone(evt, lessonText);
+    function onEditingLessonClicked(evt) {
+        const editedLessonText = textAreaRef.current.value;
+
+        if (isAddingLesson) {
+            const addedLessonDate = getDateString(lessonDate);
+            const addedLesson = createLesson(addedLessonDate, editedLessonText);
+            onEditingLessonDone(evt, addedLesson);
+        } else {
+            const updatedLesson = createLesson(lessonDate, editedLessonText);
+            onEditingLessonDone(evt, updatedLesson);
+        }
     }
 
     return (
@@ -19,21 +36,21 @@ function LessonInputDialog({todaysDate, onAddLessonDone, onAddLessonCancelled}) 
             <div id="lessonInput" className="lesson-input-dialog">
                 <div className="dialog-content">
                     <div className="content-header">
-                        <div className="title">Add Today's Lesson</div>
-                        <div className="close-button" onClick={onAddLessonCancelled}>&times;</div>
+                        <div className="title">{isAddingLesson ? "Add Today's Lesson" : "Update Lesson"}</div>
+                        <div className="close-button" onClick={onEditingLessonCancelled}>&times;</div>
                     </div>
                     <div className="content-body">
-                        <div className="content-date">{getDateString(todaysDate)}</div>
+                        <div className="content-date">{isAddingLesson ? getDateString(lessonDate) : lessonDate}</div>
                         <div className="content-text-area">
                             <form action="/">
                                 <div>
-                                    <textarea id="add-lesson-text-area" ref={textAreaRef} maxlength="500" onChange={onLessonTextChanged} placeholder="What did you learn?"></textarea>
+                                    <textarea id="add-lesson-text-area" ref={textAreaRef} maxLength="500" onChange={onLessonTextChanged} placeholder="What did you learn?"></textarea>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div className="content-footer">
-                        <div className="submit-button" type="submit" onClick={onAddLessonClicked} href="/">Add Lesson</div>
+                        <div className="submit-button" type="submit" onClick={onEditingLessonClicked} href="/">{isAddingLesson ? "Add Lesson" : "Update Lesson"}</div>
                     </div>
                 </div>
             </div>
