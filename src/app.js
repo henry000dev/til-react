@@ -94,7 +94,7 @@ function App() {
     <div id='app'>
       <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
       {updatingLesson != null && <LessonInputDialog isAddingLesson={false} lessonDate={updatingLesson.date} lessonText={updatingLesson.text} onEditingLessonDone={handleUpdatingLessonDone} onEditingLessonCancelled={handleUpdatingLessonCancelled} />}
-      {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={todaysDate} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
+      {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={getDateString(todaysDate)} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
       {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
       <MiddlePanel lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
     </div>

@@ -1,7 +1,10 @@
 import React, {useRef, useEffect} from 'react';
 import './lesson-input-dialog.css';
-import {getDateString, createLesson} from './../../../utils/utils';
+import {createLesson} from './../../../utils/utils';
 
+/**
+ * lessonDate: Text in the following format: May 29, 2020 
+ */
 function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLessonDone, onEditingLessonCancelled}) {
     const textAreaRef = useRef();
 
@@ -20,11 +23,10 @@ function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLes
 
     function onEditingLessonClicked(evt) {
         const editedLessonText = textAreaRef.current.value;
-
+        const updatedLesson = createLesson(lessonDate, editedLessonText);
+        
         if (isAddingLesson) {
-            const addedLessonDate = getDateString(lessonDate);
-            const addedLesson = createLesson(addedLessonDate, editedLessonText);
-            onEditingLessonDone(evt, addedLesson);
+            onEditingLessonDone(evt, updatedLesson);
         } else {
             const updatedLesson = createLesson(lessonDate, editedLessonText);
             onEditingLessonDone(evt, updatedLesson);
@@ -40,7 +42,7 @@ function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLes
                         <div className="close-button" onClick={onEditingLessonCancelled}>&times;</div>
                     </div>
                     <div className="content-body">
-                        <div className="content-date">{isAddingLesson ? getDateString(lessonDate) : lessonDate}</div>
+                        <div className="content-date">{isAddingLesson ? lessonDate : lessonDate}</div>
                         <div className="content-text-area">
                             <form action="/">
                                 <div>
