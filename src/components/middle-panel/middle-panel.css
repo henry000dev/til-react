@@ -5,6 +5,7 @@
     /* The left value should match with the width of left panel. */
     left: 20vw;
 
+    width: 80vw;
     min-height: 100vh;
 
     background-color: var(--background-colour-secondary);
@@ -12,5 +13,13 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    align-items: center;
+}
+
+.lessons-container {
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
 }

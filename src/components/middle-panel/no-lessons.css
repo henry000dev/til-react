@@ -1,0 +1,11 @@
+.no-lessons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 2rem;
+}
+
+.no-lessons-container p:nth-child(1) {
+    font-size: 1.25rem;
+}

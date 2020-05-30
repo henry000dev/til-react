@@ -27,7 +27,7 @@ function LessonInputDialog({todaysDate, onAddLessonDone, onAddLessonCancelled}) 
                         <div className="content-text-area">
                             <form action="/">
                                 <div>
-                                    <textarea id="add-lesson-text-area" ref={textAreaRef} maxlength="200" onChange={onLessonTextChanged} placeholder="What did you learn?"></textarea>
+                                    <textarea id="add-lesson-text-area" ref={textAreaRef} maxlength="500" onChange={onLessonTextChanged} placeholder="What did you learn?"></textarea>
                                 </div>
                             </form>
                         </div>

@@ -1,8 +1,0 @@
-.lessons-list-container {
-    display: flex;
-    flex-direction: column;
-    justify-self: start;
-    align-items: center;
-
-    padding: 2rem;
-}
