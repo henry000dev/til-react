@@ -11,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dialog-content {
+.message-dialog-content {
     background-color: var(--background-colour-secondary);
     padding: 1rem;
     
@@ -28,7 +28,7 @@
     align-items: stretch;
 }
 
-.content-header {
+.message-dialog-content-header {
     text-align: center;
 
     display: flex;
@@ -39,7 +39,7 @@
     padding: 0.5rem;
 }
 
-.content-header .title {
+.message-dialog-content-header .title {
     flex: 1;
 
     color: var(--text-colour-dark);
@@ -47,7 +47,7 @@
     text-align: center;
 }
 
-.content-body {
+.message-dialog-content-body {
     flex: 1;
 
     display: flex;
@@ -60,7 +60,7 @@
     overflow-y: auto;
 }
 
-.content-body .message {
+.message-dialog-content-body .message {
     flex: 1;
     height: 100%;
 
@@ -68,7 +68,7 @@
     white-space:pre-wrap;
 }
 
-.content-footer {
+.message-dialog-content-footer {
     text-align: center;
 
     display: flex;
@@ -79,7 +79,7 @@
     padding: 0.5rem;
 }
 
-.content-footer .ok-button {
+.message-dialog-content-footer .ok-button {
     width: 6rem;
     padding: 0.75rem;
     text-align: center;

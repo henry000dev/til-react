@@ -9,6 +9,7 @@
 
 .lesson-date {
     color: var(--colour-primary);
+    cursor: pointer;
 }
 
 .lesson-text {
