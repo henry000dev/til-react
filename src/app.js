@@ -10,7 +10,7 @@ const LESSONS_STORAGE_KEY = "til-react.lessons";
 function App() {
   const todaysDate = new Date();
   const [lessons, setLessons] = useState([]);
-  const [addLesson, setAddLesson] = useState(false);
+  const [addingLesson, setAddingLesson] = useState(false);
 
   useEffect(() => {
     const storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
@@ -18,29 +18,41 @@ function App() {
     setLessons(storedLessons);
   } ,[]);
 
+  useEffect(() => {
+    localStorage.setItem(LESSONS_STORAGE_KEY, JSON.stringify(lessons))
+  }, [lessons])
+
   function todayHasLesson() {
-    // const todaysDateString = getDateString(todaysDate);
-    // const aDate = lessons.find((aDate) => aDate.date === todaysDateString);
-    // return aDate !== undefined;
-    return false;
+    const todaysDateString = getDateString(todaysDate);
+    const aDate = lessons.find((aDate) => aDate.date === todaysDateString);
+    return aDate !== undefined;
   }
 
   function handleAddLessonCancelled(evt) {
-    setAddLesson(false);
+    setAddingLesson(false);
   }
 
-  function handleAddLessonDone(evt) {
-    setAddLesson(false);
+  function handleAddLessonDone(evt, lessonText) {
+    const newLessons = [...lessons];
+
+    newLessons.unshift({
+      date: getDateString(todaysDate),
+      text: lessonText
+    });
+   
+    setLessons(newLessons);
+
+    setAddingLesson(false);
   }
 
-  function handleAddLesson(evt) {
-    setAddLesson(true);
+  function handleAddLessonClicked(evt) {
+    setAddingLesson(true);
   }
 
   return (
     <div id='app'>
-      <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLesson} />
-      {addLesson && <LessonInputDialog todaysDate={todaysDate} onAddLessonDone={handleAddLessonDone} onAddLessonCancelled={handleAddLessonCancelled} />}
+      <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
+      {addingLesson && <LessonInputDialog todaysDate={todaysDate} onAddLessonDone={handleAddLessonDone} onAddLessonCancelled={handleAddLessonCancelled} />}
       <MiddlePanel lessons={lessons}/>
     </div>
   );

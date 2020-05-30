@@ -8,7 +8,7 @@
 }
 
 .lesson-date {
-    
+    color: var(--colour-primary);
 }
 
 .lesson-text {

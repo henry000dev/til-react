@@ -1,4 +1,5 @@
 .middle-panel {
+    /* Use absolute so the left value can be adjusted to be next to the left panel. */
     position: absolute;
 
     /* The left value should match with the width of left panel. */
@@ -11,5 +12,5 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
+    align-items: flex-start;
 }

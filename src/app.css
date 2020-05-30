@@ -4,7 +4,4 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-
-    /* The panels must be at least as height as the browser view-port. */
-    /* min-height: 100vh; */
 }
