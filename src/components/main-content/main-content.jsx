@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './header/header';
+import Footer from './footer/footer';
 import NoLessons from './no-lessons';
 import LessonsList from './lessons/lessons-list';
-import './middle-panel.css';
+import './main-content.css';
 
-function MiddlePanel({lessons, onEditLessonClicked}) {
+function MainContent({lessons, onEditLessonClicked}) {
     function showNoLessonsMessage() {
         return <NoLessons />;
     }
@@ -18,11 +19,12 @@ function MiddlePanel({lessons, onEditLessonClicked}) {
     }
 
     return (
-        <div className="middle-panel">
+        <div className="main-content">
             <Header />
             {(lessons.length === 0) ? showNoLessonsMessage() : showLessonsList()}
+            <Footer />
         </div>
     );
 }
 
-export default MiddlePanel;
+export default MainContent;

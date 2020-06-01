@@ -4,11 +4,6 @@ body {
   font-family: 'Josefin Sans', serif;
 }
 
-a, a:visited {
-  text-decoration: none;
-  color: var(--text-colour-light);
-}
-
 * {
   box-sizing: border-box;
   padding: 0px;

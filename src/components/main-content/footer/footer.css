@@ -1,0 +1,18 @@
+#footer {
+    margin-top: 5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    color: var(--text-colour-dark);
+}
+
+#footer a, a:visited {
+    text-decoration: none;
+    color: var(--text-colour-dark);
+}
+
+#footer div:nth-child(1) {
+    padding: 0.5rem;
+}

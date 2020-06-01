@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import MiddlePanel from './components/middle-panel/middle-panel';
-import LeftPanel from './components/left-panel/left-panel';
+import MainContent from './components/main-content/main-content';
+import SideBar from './components/sidebar/sidebar';
 import LessonInputDialog from './components/modal-dialog/lesson-input-dialog/lesson-input-dialog';
 import MessageDialog from './components/modal-dialog/message-dialog/message-dialog';
 import {getDateString} from './utils/utils';
 import './app.css';
+
+// TODO: commenting
+// TODO: context?
+// TODO: Responsiveness
 
 const LESSONS_STORAGE_KEY = "til-react.lessons";
 
@@ -92,11 +96,11 @@ function App() {
 
   return (
     <div id='app'>
-      <LeftPanel todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
+      <SideBar todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
       {updatingLesson != null && <LessonInputDialog isAddingLesson={false} lessonDate={updatingLesson.date} lessonText={updatingLesson.text} onEditingLessonDone={handleUpdatingLessonDone} onEditingLessonCancelled={handleUpdatingLessonCancelled} />}
       {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={getDateString(todaysDate)} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
       {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
-      <MiddlePanel lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
+      <MainContent lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
     </div>
   );
 }
