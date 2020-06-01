@@ -6,24 +6,30 @@ import MessageDialog from './components/modal-dialog/message-dialog/message-dial
 import {getDateString} from './utils/utils';
 import './app.css';
 
-// TODO: commenting
 // TODO: context?
-// TODO: Responsiveness
 
 const LESSONS_STORAGE_KEY = "til-react.lessons";
 
 function App() {
   const todaysDate = new Date();
 
+  // Renders lessons. A lesson looks like this: {date: "May 19, 2020", text: "I learned..."}. See sample.json.
   const [lessons, setLessons] = useState([]);
+
+  // Renders the add-lesson-dialog.
   const [addingLesson, setAddingLesson] = useState(false);
+
+  // Renders the update-lesson-dialog.
   const [updatingLesson, setUpdatingLesson] = useState(null);
+
+  // Renders the message dialog.
   const [dialogMessage, setDialogMessage] = useState({
     isShowing: false,
     title: "Title",
     message: "Message"
   });
 
+  // This is the initial app start. Effect does not depend on anything, since nothing in the dependency array.
   useEffect(() => {
     let storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
 
@@ -33,6 +39,7 @@ function App() {
     setLessons(storedLessons);
   }, []);
 
+  // The effect depends on whenever the lessons changes (lessons in the dependency array).
   useEffect(() => {
     localStorage.setItem(LESSONS_STORAGE_KEY, JSON.stringify(lessons))
   }, [lessons])
@@ -97,6 +104,7 @@ function App() {
     });
   }
 
+  // Using conditional rendering for the dialogs. Note, only one dialog can show at any given time.
   return (
     <div id='app'>
       <SideBar todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
