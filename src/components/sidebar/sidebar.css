@@ -3,7 +3,7 @@
     position: fixed;
 
     /* The width should match with the left value of middle panel. */
-    width: 20vw;
+    width: 20rem;
     height: 100vh;
 
     display: flex;
