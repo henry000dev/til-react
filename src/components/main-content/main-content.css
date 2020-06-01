@@ -3,17 +3,20 @@
     position: absolute;
 
     /* The left value should match with the width of left panel. */
-    left: 20vw;
+    /* left: 20vw; */
+    left: 20rem;
 
-    width: 80vw;
+    width: calc(100% - 20rem);
     min-height: 100vh;
 
     background-color: var(--background-colour-secondary);
 
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
+
+    padding: 1rem;
 }
 
 .lessons-container {

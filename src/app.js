@@ -25,7 +25,10 @@ function App() {
   });
 
   useEffect(() => {
-    const storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
+    let storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
+
+    if (!storedLessons)
+      storedLessons = [];
 
     setLessons(storedLessons);
   }, []);
