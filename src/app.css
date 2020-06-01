@@ -5,3 +5,14 @@
     justify-content: space-between;
     align-items: stretch;
 }
+
+/* With mobile screen, just use simple column layout. */
+@media screen and (max-width: 600px) {
+    #app {
+        /* Defines how children elements are laid out. */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+}

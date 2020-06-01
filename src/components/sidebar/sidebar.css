@@ -1,5 +1,5 @@
 .sidebar {
-    /* /* This make sure the left panel is fixed in place regardless of scroll. */
+    /* This make sure the left panel is fixed in place regardless of scroll. */
     position: fixed;
 
     /* The width should match with the left value of middle panel. */
@@ -14,4 +14,22 @@
     padding: 2rem 1rem;
 
     background-color: var(--background-colour-primary);
+}
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        position: static;
+
+        height: 35rem;
+        width: 100%;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    
+        padding: 2rem 1rem;
+    
+        background-color: var(--background-colour-primary);
+    }
 }
