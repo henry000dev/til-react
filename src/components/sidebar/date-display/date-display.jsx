@@ -1,8 +1,10 @@
-import React from 'react';
-import './date-display.css';
+import React, {useContext} from 'react';
+import TodayContext from './../../../contexts/today.context';
 import {getDateParts} from './../../../utils/utils';
+import './date-display.css';
 
-function DateDisplay({todaysDate}) {
+function DateDisplay() {
+    const todaysDate = useContext(TodayContext);
     const dateParts = getDateParts(todaysDate);
 
     return (

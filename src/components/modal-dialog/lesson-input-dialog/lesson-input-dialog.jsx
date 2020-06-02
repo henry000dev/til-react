@@ -5,7 +5,7 @@ import {createLesson} from './../../../utils/utils';
 /**
  * lessonDate: Text in the following format: May 29, 2020 
  */
-function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLessonDone, onEditingLessonCancelled}) {
+function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLessonDone, onDeletingLessonDone, onEditingLessonCancelled}) {
     const textAreaRef = useRef();
 
     // Sets the initial text area value. For some reason using value={lessonText} in the HTML makes it not editable.
@@ -33,6 +33,29 @@ function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLes
         }
     }
 
+    function onDeletingLessonClicked(evt) {
+        const deletedLesson = createLesson(lessonDate, ""); // Lesson text won't matter when deleting.
+        onDeletingLessonDone(evt, deletedLesson);
+    }
+
+    function renderFooter() {
+        if (isAddingLesson) {
+            return (
+                <div className="content-footer footer-centred">
+                    <div className="submit-button" onClick={onEditingLessonClicked} href="/">{isAddingLesson ? "Add Lesson" : "Update Lesson"}</div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="content-footer footer-spread">
+                    <div className="ghost-button"></div>
+                    <div className="submit-button" onClick={onEditingLessonClicked} href="/">{isAddingLesson ? "Add Lesson" : "Update Lesson"}</div>
+                    <div className="delete-button" onClick={onDeletingLessonClicked} href="/"><i class="far fa-trash-alt"></i></div>
+                </div>
+            );
+        }
+    }
+
     return (
         <div>
             <div id="lessonInput" className="lesson-input-dialog">
@@ -51,9 +74,8 @@ function LessonInputDialog({isAddingLesson, lessonDate, lessonText, onEditingLes
                             </form>
                         </div>
                     </div>
-                    <div className="content-footer">
-                        <div className="submit-button" type="submit" onClick={onEditingLessonClicked} href="/">{isAddingLesson ? "Add Lesson" : "Update Lesson"}</div>
-                    </div>
+                    {/* Using another kind of conditional rendering. */}
+                    {renderFooter()}
                 </div>
             </div>
         </div>

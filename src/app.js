@@ -4,9 +4,8 @@ import SideBar from './components/sidebar/sidebar';
 import LessonInputDialog from './components/modal-dialog/lesson-input-dialog/lesson-input-dialog';
 import MessageDialog from './components/modal-dialog/message-dialog/message-dialog';
 import {getDateString} from './utils/utils';
+import TodayContext from './contexts/today.context';
 import './app.css';
-
-// TODO: context?
 
 const LESSONS_STORAGE_KEY = "til-react.lessons";
 
@@ -64,6 +63,17 @@ function App() {
     setAddingLesson(false);
   }
 
+  function handleDeletingLessonDone(evt, deletedLesson) {
+    const lessonIndex = lessons.findIndex((lesson) => lesson.date === deletedLesson.date);
+    
+    const newLessons = [...lessons];
+    newLessons.splice(lessonIndex, 1);
+
+    setLessons(newLessons);
+
+    setUpdatingLesson(null);
+  }
+
   function handleAddLessonClicked(evt) {
     if (lessons.length >= 10) {
       setDialogMessage({
@@ -104,15 +114,21 @@ function App() {
     });
   }
 
-  // Using conditional rendering for the dialogs. Note, only one dialog can show at any given time.
   return (
-    <div id='app'>
-      <SideBar todayHasLesson={todayHasLesson()} todaysDate={todaysDate} onAddLessonClicked={handleAddLessonClicked} />
-      {updatingLesson != null && <LessonInputDialog isAddingLesson={false} lessonDate={updatingLesson.date} lessonText={updatingLesson.text} onEditingLessonDone={handleUpdatingLessonDone} onEditingLessonCancelled={handleUpdatingLessonCancelled} />}
-      {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={getDateString(todaysDate)} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
-      {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
-      <MainContent lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
-    </div>
+    // Using
+    <TodayContext.Provider value={todaysDate}>
+      <div id='app'>
+        {/* With this, we use the React Context APII to demonstrate how to use it. */}
+        <SideBar todayHasLesson={todayHasLesson()} onAddLessonClicked={handleAddLessonClicked} />
+
+        {/* Using conditional rendering for the dialogs. Note, only one dialog can show at any given time. */}
+        {updatingLesson != null && <LessonInputDialog isAddingLesson={false} lessonDate={updatingLesson.date} lessonText={updatingLesson.text} onEditingLessonDone={handleUpdatingLessonDone} onDeletingLessonDone={handleDeletingLessonDone} onEditingLessonCancelled={handleUpdatingLessonCancelled} />}
+        {addingLesson && <LessonInputDialog isAddingLesson={true} lessonDate={getDateString(todaysDate)} lessonText={null} onEditingLessonDone={handleAddingLessonDone} onEditingLessonCancelled={handleAddingLessonCancelled} />}
+        {dialogMessage.isShowing && <MessageDialog title={dialogMessage.title} message={dialogMessage.message} onDialogDismissed={showMessageDismissed} />}      
+
+        <MainContent lessons={lessons} onEditLessonClicked={handleUpdatingLessonClicked} />
+      </div>
+    </TodayContext.Provider>
   );
 }
 
