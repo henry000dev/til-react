@@ -5,6 +5,7 @@ import LessonInputDialog from './components/modal-dialog/lesson-input-dialog/les
 import MessageDialog from './components/modal-dialog/message-dialog/message-dialog';
 import {getDateString} from './utils/utils';
 import TodayContext from './contexts/today.context';
+import DEFAULT_DATA from './data/default.json';
 import './app.css';
 
 const LESSONS_STORAGE_KEY = "til-react.lessons";
@@ -32,8 +33,16 @@ function App() {
   useEffect(() => {
     let storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
 
-    if (!storedLessons)
+    if (!storedLessons) {
+      const now = new Date();
       storedLessons = [];
+
+      DEFAULT_DATA.forEach(function(lesson, index) {
+        const aPreviousDate = (new Date()).setDate(now.getDate() - (index + 1));
+        lesson.date = getDateString(new Date(aPreviousDate));
+        storedLessons.push(lesson);
+      });
+    }
 
     setLessons(storedLessons);
   }, []);
