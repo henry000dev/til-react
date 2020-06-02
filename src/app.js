@@ -31,19 +31,28 @@ function App() {
 
   // This is the initial app start. Effect does not depend on anything, since nothing in the dependency array.
   useEffect(() => {
-    let storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
-
-    if (!storedLessons) {
+    // Function inside useEffect to remove dependency warnings.
+    const initDefaultLessons = () => {
       const now = new Date();
-      storedLessons = [];
+      const defaultLessons = [];
 
       DEFAULT_DATA.forEach(function(lesson, index) {
         const aPreviousDate = (new Date()).setDate(now.getDate() - (index + 1));
         lesson.date = getDateString(new Date(aPreviousDate));
-        storedLessons.push(lesson);
+        defaultLessons.push(lesson);
       });
+
+      return defaultLessons;
     }
 
+    // Retrieve lessons from the local storage.
+    let storedLessons = JSON.parse(localStorage.getItem(LESSONS_STORAGE_KEY));
+
+    // If the first time or cache cleared - reload some default lessons. 
+    if (!storedLessons)
+      storedLessons = initDefaultLessons();
+
+    // Render!
     setLessons(storedLessons);
   }, []);
 
