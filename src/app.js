@@ -8,6 +8,7 @@ import TodayContext from './contexts/today.context';
 import DEFAULT_DATA from './data/default.json';
 import './app.css';
 
+const MAX_LESSON_COUNT = 100;
 const LESSONS_STORAGE_KEY = "til-react.lessons";
 
 function App() {
@@ -93,11 +94,11 @@ function App() {
   }
 
   function handleAddLessonClicked(evt) {
-    if (lessons.length >= 10) {
+    if (lessons.length >= MAX_LESSON_COUNT) {
       setDialogMessage({
         isShowing: true,
         title: "Add Lesson",
-        message: "Sorry, cannot add more than 10 lessons...\n\nIt's just a demo app after all 😀"
+        message: "Sorry, cannot add more than " + MAX_LESSON_COUNT + " lessons...\n\nIt's just a demo app after all 😀"
       });
       return;
     }
