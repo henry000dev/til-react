@@ -14,15 +14,7 @@ body {
   background-color: var(--background-colour-primary);
   color: var(--text-colour-dark);
 
-  /* Set 1 */
-  /* --background-colour-primary: black;
-  --background-colour-secondary: #eee;
-  --colour-primary: thistle;
-  --colour-secondary: #785064;
-  --text-colour-light: #eee;
-  --text-colour-dark: #404040; */
-
-  /* Set 2 - https://www.webdesignrankings.com/resources/lolcolors/ */
+  /* https://www.webdesignrankings.com/resources/lolcolors/ */
   --background-colour-primary: #08182b;
   --background-colour-secondary: #f4f4f4;
   --colour-primary: #ee2560;
@@ -31,12 +23,4 @@ body {
   --text-colour-light: #f4f4f4;
   --text-colour-light-dimmer: #c8c8c8;
   --text-colour-dark: #08182b;
-
-  /* Set 3 - https://colorhunt.co/palette/181961 */
-  /* --background-colour-primary: #3f3f44;
-  --background-colour-secondary: #f7f7f7;
-  --colour-primary: #fdcb9e;
-  --colour-secondary: #cceabb;
-  --text-colour-light: #f7f7f7;
-  --text-colour-dark: #3f3f44; */
 }
