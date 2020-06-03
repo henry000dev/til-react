@@ -134,7 +134,6 @@ function App() {
   }
 
   return (
-    // Using
     <TodayContext.Provider value={todaysDate}>
       <div id='app'>
         {/* With this, we use the React Context APII to demonstrate how to use it. */}
